@@ -3,12 +3,31 @@
  */
 package apache.kafka.test;
 
+import java.util.Properties;
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+//        System.out.println(new App().getGreeting());
+
+    	Properties properties = new Properties();
+    	properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+
+    	KafkaProducer<String, String> producer = new KafkaProducer<>(properties, new StringSerializer(), new StringSerializer());
+
+
+    	for (int i = 0; i < 10; i++) {
+    		producer.send(new ProducerRecord<String, String>("mytopic", String.format("message%02d", i)));
+    	}
+
+    	producer.close();
     }
 }
