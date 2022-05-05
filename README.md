@@ -23,7 +23,7 @@
 
 ## Consumer起動
 ```
-bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic mytopic --from-beginningでConsumer
+bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic mytopic --from-beginning
 ```
 
 ## 終了
