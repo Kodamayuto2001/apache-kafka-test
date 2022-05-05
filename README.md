@@ -16,6 +16,16 @@
 ./gradlew composeUp
 ```
 
+## Producer起動
+```
+./gradlew run
+```
+
+## Consumer起動
+```
+bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic mytopic --from-beginningでConsumer
+```
+
 ## 終了
 ```
 ./gradlew composeDown
